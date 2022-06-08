@@ -15,9 +15,10 @@ export function HomePage({ navigation }: RootStackScreenProps): ReactElement {
     <Page>
       {status === 'loading' ? <ActivityIndicator /> : null}
       {status === 'error' ? <Text color="red.300">Error</Text> : null}
-      {status === 'success' ? (
+      {status === 'success' && data ? (
         <FlatList<Anime>
-          data={data?.data ?? []}
+          py={4}
+          data={data.data ?? []}
           keyExtractor={item => item.mal_id.toString()}
           renderItem={({ item }) => (
             <AnimeItem

@@ -29,8 +29,6 @@ export function AnimeItem({ anime, onPress, ...props }: Props): ReactElement {
           top={0}
           width="100%"
           height={null}
-          // borderTopLeftRadius="md"
-          // borderTopRightRadius="md"
           alt={anime.title}
           source={{ uri: anime.images.jpg.large_image_url }}
         />

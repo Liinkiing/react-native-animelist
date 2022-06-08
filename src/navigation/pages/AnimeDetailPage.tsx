@@ -1,24 +1,37 @@
 import type { ReactElement } from 'react'
 import { ActivityIndicator } from 'react-native'
-import { Text, VStack } from 'native-base'
+import { Image, Text, VStack } from 'native-base'
 import { useQuery } from 'react-query'
 import type { RootStackScreenProps } from '../AppNavigator'
 import { JikanClient } from '../../api/jikan/client'
+import { Page } from '../../shared/layout/Page'
+import { ShowMore } from '../../shared/components/ShowMore'
+import { AnimeMetrics } from '../../sections/anime/components/AnimeMetrics'
 
-export function AnimeDetailPage({
-  route,
-  navigation,
-}: RootStackScreenProps): ReactElement {
+export function AnimeDetailPage({ route }: RootStackScreenProps): ReactElement {
   const id = route.params?.id ?? ''
-  const { status, data } = useQuery(['anime', id], () =>
+  const { status, data: anime } = useQuery(['anime', id], () =>
     JikanClient.getAnime(id),
   )
 
   return (
-    <VStack safeArea>
+    <Page px={0} isScrollView>
       {status === 'loading' ? <ActivityIndicator /> : null}
       {status === 'error' ? <Text color="red.300">Error</Text> : null}
-      {status === 'success' && data ? <Text>{data.title}</Text> : null}
-    </VStack>
+      {status === 'success' && anime ? (
+        <VStack>
+          <Image
+            width="100%"
+            height={180}
+            alt={anime.title}
+            source={{ uri: anime.images.jpg.large_image_url }}
+          />
+          <VStack space={4} p={4}>
+            <AnimeMetrics anime={anime} />
+            <ShowMore noOfLines={4}>{anime.synopsis}</ShowMore>
+          </VStack>
+        </VStack>
+      ) : null}
+    </Page>
   )
 }
