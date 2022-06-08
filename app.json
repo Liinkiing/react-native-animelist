@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "first",
-    "slug": "first",
+    "name": "myanimelist",
+    "slug": "myanimelist",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -18,7 +18,8 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.liinkiing.myanimelist"
     },
     "android": {
       "adaptiveIcon": {
