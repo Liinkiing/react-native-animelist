@@ -1,5 +1,6 @@
 {
   "expo": {
+    "scheme": "mal",
     "name": "myanimelist",
     "slug": "myanimelist",
     "version": "1.0.0",
