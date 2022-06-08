@@ -1,18 +1,15 @@
 import type { ReactElement } from 'react'
-import { ActivityIndicator, Dimensions, TouchableOpacity } from 'react-native'
-import { Heading, Image, Text, VStack } from 'native-base'
-import { useQuery } from 'react-query'
-import Animated, {
-  useAnimatedStyle,
-  withSpring,
-  withTiming,
-} from 'react-native-reanimated'
 import { useState } from 'react'
+import { ActivityIndicator, TouchableOpacity } from 'react-native'
+import { Heading, Text, VStack } from 'native-base'
+import { useQuery } from 'react-query'
+import Animated, { useAnimatedStyle, withSpring } from 'react-native-reanimated'
 import { JikanClient } from '../../api/jikan/client'
 import { Page } from '../../shared/layout/Page'
 import { ShowMore } from '../../shared/components/ShowMore'
 import { AnimeMetrics } from '../../sections/anime/components/AnimeMetrics'
 import type { AuthenticatedStackScreenProps } from '../stacks/AuthenticatedStack'
+import { AnimeEpisodes } from '../../sections/anime/components/AnimeEpisodes'
 
 export function AnimeDetailPage({
   route,
@@ -47,6 +44,10 @@ export function AnimeDetailPage({
               <Heading>Synopsis</Heading>
               <ShowMore noOfLines={4}>{anime.synopsis}</ShowMore>
             </VStack>
+            <AnimeEpisodes
+              fallback={<Heading>No episodes found</Heading>}
+              anime={anime}
+            />
           </VStack>
         </VStack>
       ) : null}

@@ -1,5 +1,6 @@
 import type {
   Anime,
+  Episode,
   PaginatedResponse,
   SingleResponse,
 } from '../../@types/api/jikan'
@@ -10,6 +11,12 @@ class JikanClientApp {
   public getAnime = async (id: string): Promise<Anime> => {
     const { data } = await this.get<SingleResponse<Anime>>(`/anime/${id}`)
     return data
+  }
+
+  public getAnimeEpisodes = async (
+    id: string,
+  ): Promise<PaginatedResponse<Episode>> => {
+    return this.get<PaginatedResponse<Episode>>(`/anime/${id}/episodes`)
   }
 
   public getSeasonal = (): Promise<PaginatedResponse<Anime>> => {

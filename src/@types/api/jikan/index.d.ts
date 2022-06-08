@@ -16,6 +16,18 @@ export interface PaginatedResponse<T> {
   data: T[]
 }
 
+export interface Episode {
+  mal_id: number
+  url: string
+  title: string
+  title_japanese: string
+  title_romanji: string
+  aired: string | null
+  filler: boolean
+  recap: boolean
+  forum_url: string
+}
+
 interface Aired {
   from: Date
   to: null
