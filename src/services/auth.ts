@@ -31,7 +31,9 @@ class AuthServiceApp {
           likes: [anime, ...newUser.likes],
         }
 
-    await AsyncStorage.mergeItem(USER_KEY, JSON.stringify(newUser))
+    if (AsyncStorage.mergeItem) {
+      await AsyncStorage.mergeItem(USER_KEY, JSON.stringify(newUser))
+    }
 
     return newUser
   }

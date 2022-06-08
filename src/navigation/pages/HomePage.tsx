@@ -25,14 +25,12 @@ export function HomePage({
           keyExtractor={item => item.mal_id.toString()}
           renderItem={({ item }) => (
             <AnimeItem
-              onLikePress={() => toggleAnimeLike(item)}
-              hasLiked={user.likes.some(like => like.mal_id === item.mal_id)}
+              showLike
               mb={4}
               anime={item}
               onPress={() =>
                 navigation.navigate('AnimeDetail', {
-                  id: item.mal_id.toString(),
-                  title: item.title,
+                  anime: item,
                 })
               }
             />

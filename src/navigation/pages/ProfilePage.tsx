@@ -4,8 +4,11 @@ import { Page } from '../../shared/layout/Page'
 import { useAuth } from '../../shared/providers/AuthProvider'
 import { AnimeItem } from '../../sections/home/components/AnimeItem'
 import type { SerializedAnime } from '../../@types/auth'
+import type { AuthenticatedStackScreenProps } from '../stacks/AuthenticatedStack'
 
-export function ProfilePage(): ReactElement {
+export function ProfilePage({
+  navigation,
+}: AuthenticatedStackScreenProps): ReactElement {
   const { user } = useAuth()
   return (
     <Page p={4}>
@@ -22,8 +25,11 @@ export function ProfilePage(): ReactElement {
               keyExtractor={item => item.mal_id.toString()}
               renderItem={({ item }) => (
                 <AnimeItem
-                  width={250}
-                  height={300}
+                  onPress={() => {
+                    navigation.navigate('AnimeDetail', { anime: item })
+                  }}
+                  width={260}
+                  height={400}
                   mr={4}
                   showLike={false}
                   anime={item}

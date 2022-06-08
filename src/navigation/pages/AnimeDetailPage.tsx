@@ -2,14 +2,16 @@ import type { ReactElement } from 'react'
 import { ActivityIndicator } from 'react-native'
 import { Heading, Image, Text, VStack } from 'native-base'
 import { useQuery } from 'react-query'
-import type { RootStackScreenProps } from '../AppNavigator'
 import { JikanClient } from '../../api/jikan/client'
 import { Page } from '../../shared/layout/Page'
 import { ShowMore } from '../../shared/components/ShowMore'
 import { AnimeMetrics } from '../../sections/anime/components/AnimeMetrics'
+import type { AuthenticatedStackScreenProps } from '../stacks/AuthenticatedStack'
 
-export function AnimeDetailPage({ route }: RootStackScreenProps): ReactElement {
-  const id = route.params?.id ?? ''
+export function AnimeDetailPage({
+  route,
+}: AuthenticatedStackScreenProps): ReactElement {
+  const id = route.params?.anime?.mal_id?.toString() ?? ''
   const { status, data: anime } = useQuery(['anime', id], () =>
     JikanClient.getAnime(id),
   )

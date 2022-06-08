@@ -23,10 +23,12 @@ const MetricTitle = ({ children }: { children: ReactNode }): ReactElement => (
 export function AnimeMetrics({ anime }: Props): ReactElement {
   return (
     <HStack justifyContent="center" space={8}>
-      <Metric>
-        <MetricTitle>Episodes</MetricTitle>
-        <MetricValue>{anime.episodes}</MetricValue>
-      </Metric>
+      {anime.episodes ? (
+        <Metric>
+          <MetricTitle>Episodes</MetricTitle>
+          <MetricValue>{anime.episodes}</MetricValue>
+        </Metric>
+      ) : null}
       <Metric>
         <MetricTitle>Score</MetricTitle>
         <MetricValue>{anime.score}</MetricValue>
