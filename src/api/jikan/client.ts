@@ -16,10 +16,10 @@ class JikanClientApp {
     return this.get<PaginatedResponse<Anime>>(`/seasons/now`)
   }
 
-  private async get<T>(
+  private get = async <T>(
     endpoint: string,
     params?: Record<string, string>,
-  ): Promise<T> {
+  ): Promise<T> => {
     const queryParams = new URLSearchParams(params ?? {})
     const response = await fetch(`${this.baseUrl}${endpoint}?${queryParams}`, {
       headers: {

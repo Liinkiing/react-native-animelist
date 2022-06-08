@@ -1,6 +1,6 @@
 import type { ReactElement } from 'react'
 import { ActivityIndicator } from 'react-native'
-import { Image, Text, VStack } from 'native-base'
+import { Heading, Image, Text, VStack } from 'native-base'
 import { useQuery } from 'react-query'
 import type { RootStackScreenProps } from '../AppNavigator'
 import { JikanClient } from '../../api/jikan/client'
@@ -28,7 +28,10 @@ export function AnimeDetailPage({ route }: RootStackScreenProps): ReactElement {
           />
           <VStack space={4} p={4}>
             <AnimeMetrics anime={anime} />
-            <ShowMore noOfLines={4}>{anime.synopsis}</ShowMore>
+            <VStack space={2}>
+              <Heading>Synopsis</Heading>
+              <ShowMore noOfLines={4}>{anime.synopsis}</ShowMore>
+            </VStack>
           </VStack>
         </VStack>
       ) : null}
