@@ -7,13 +7,13 @@ import {
   useMemo,
   useState,
 } from 'react'
-import type { User, SerializedAnime } from '../../@types/auth'
+import type { User } from '../../@types/auth'
 import { AuthService } from '../../services/auth'
+import { UserActionsProvider } from './UserActionsProvider'
+import { UserService } from '../../services/user'
 
 interface Context {
   readonly user: User | null
-  readonly clearAnimeLikes: () => Promise<boolean>
-  readonly toggleAnimeLike: (anime: SerializedAnime) => Promise<boolean>
   readonly isLoggedIn: boolean
   readonly login: (username: string, password: string) => Promise<boolean>
   readonly logout: () => Promise<boolean>
@@ -42,24 +42,10 @@ export function AuthProvider({ children }: Props): ReactElement {
 
   useEffect(() => {
     const fetchUser = async () => {
-      const u = await AuthService.getUser()
+      const u = await UserService.getUser()
       setUser(u)
     }
     fetchUser()
-  }, [])
-
-  const toggleAnimeLike = useCallback(async (anime: SerializedAnime) => {
-    const u = await AuthService.toggleAnimeLike(anime)
-    setUser(u)
-
-    return true
-  }, [])
-
-  const clearAnimeLikes = useCallback(async () => {
-    const u = await AuthService.clearAnimeLikes()
-    setUser(u)
-
-    return true
   }, [])
 
   const login = useCallback(async (username: string, password: string) => {
@@ -81,12 +67,14 @@ export function AuthProvider({ children }: Props): ReactElement {
       isLoggedIn: !!user,
       login,
       logout,
-      clearAnimeLikes,
-      toggleAnimeLike,
       user,
     }),
-    [user, login, logout, toggleAnimeLike],
+    [user, login, logout],
   )
 
-  return <AuthContext.Provider value={context}>{children}</AuthContext.Provider>
+  return (
+    <AuthContext.Provider value={context}>
+      <UserActionsProvider setUser={setUser}>{children}</UserActionsProvider>
+    </AuthContext.Provider>
+  )
 }

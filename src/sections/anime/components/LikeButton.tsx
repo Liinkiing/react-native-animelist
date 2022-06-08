@@ -5,13 +5,15 @@ import { Ionicons } from '@expo/vector-icons'
 import { TouchableOpacity } from 'react-native'
 import { useAuth } from '../../../shared/providers/AuthProvider'
 import type { SerializedAnime } from '../../../@types/auth'
+import { useUserActions } from '../../../shared/providers/UserActionsProvider'
 
 interface Props extends Omit<IIconProps, 'name' | 'as'> {
   readonly anime: SerializedAnime
 }
 
 export function LikeButton({ anime, ...props }: Props): ReactElement {
-  const { user, toggleAnimeLike } = useAuth()
+  const { user } = useAuth()
+  const { toggleAnimeLike } = useUserActions()
   const hasLiked = user.likes.some(
     like => like.mal_id.toString() === anime.mal_id.toString(),
   )

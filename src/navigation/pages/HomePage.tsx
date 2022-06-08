@@ -7,14 +7,12 @@ import type { Anime } from '../../@types/api/jikan'
 import { AnimeItem } from '../../sections/home/components/AnimeItem'
 import { Page } from '../../shared/layout/Page'
 import type { AuthenticatedStackScreenProps } from '../stacks/AuthenticatedStack'
-import { useAuth } from '../../shared/providers/AuthProvider'
 import { serializeAnime } from '../../utils/anime'
 
 export function HomePage({
   navigation,
 }: AuthenticatedStackScreenProps): ReactElement {
   const { data, status } = useQuery('seasonalAnimes', JikanClient.getSeasonal)
-  const { user, toggleAnimeLike } = useAuth()
   return (
     <Page>
       {status === 'loading' ? <ActivityIndicator /> : null}

@@ -6,11 +6,14 @@ import { useAuth } from '../../shared/providers/AuthProvider'
 import { AnimeItem } from '../../sections/home/components/AnimeItem'
 import type { SerializedAnime } from '../../@types/auth'
 import type { AuthenticatedStackScreenProps } from '../stacks/AuthenticatedStack'
+import { useUserActions } from '../../shared/providers/UserActionsProvider'
 
 export function ProfilePage({
   navigation,
 }: AuthenticatedStackScreenProps): ReactElement {
-  const { user, clearAnimeLikes } = useAuth()
+  const { user } = useAuth()
+  const { clearAnimeLikes } = useUserActions()
+
   return (
     <Page p={4}>
       <VStack space={4}>
