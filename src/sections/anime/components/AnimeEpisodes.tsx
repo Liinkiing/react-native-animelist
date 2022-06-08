@@ -70,7 +70,6 @@ export function AnimeEpisodes({ anime, fallback }: Props): ReactElement {
               translateX: 0,
               opacity: 1,
               transition: {
-                delay: 1,
                 type: 'timing',
                 duration: 500,
                 stagger: {

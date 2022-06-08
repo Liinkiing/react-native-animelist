@@ -10,6 +10,7 @@ import { ShowMore } from '../../shared/components/ShowMore'
 import { AnimeMetrics } from '../../sections/anime/components/AnimeMetrics'
 import type { AuthenticatedStackScreenProps } from '../stacks/AuthenticatedStack'
 import { AnimeEpisodes } from '../../sections/anime/components/AnimeEpisodes'
+import { AnimePictures } from '../../sections/anime/components/AnimePictures'
 
 export function AnimeDetailPage({
   route,
@@ -38,7 +39,7 @@ export function AnimeDetailPage({
               source={{ uri: anime.images.jpg.large_image_url }}
             />
           </TouchableOpacity>
-          <VStack space={4} p={4}>
+          <VStack space={8} p={4}>
             <AnimeMetrics anime={anime} />
             <VStack space={2}>
               <Heading>Synopsis</Heading>
@@ -46,6 +47,10 @@ export function AnimeDetailPage({
             </VStack>
             <AnimeEpisodes
               fallback={<Heading>No episodes found</Heading>}
+              anime={anime}
+            />
+            <AnimePictures
+              fallback={<Heading>No pictures found</Heading>}
               anime={anime}
             />
           </VStack>

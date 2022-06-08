@@ -81,6 +81,8 @@ interface Images {
   maximum_image_url: string
 }
 
+export type AnimePictures = SingleResponse<Array<Record<'jpg' | 'webp', Image>>>
+
 export interface Anime {
   mal_id: number
   url: string

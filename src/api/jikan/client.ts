@@ -1,5 +1,6 @@
 import type {
   Anime,
+  AnimePictures,
   Episode,
   PaginatedResponse,
   SingleResponse,
@@ -17,6 +18,10 @@ class JikanClientApp {
     id: string,
   ): Promise<PaginatedResponse<Episode>> => {
     return this.get<PaginatedResponse<Episode>>(`/anime/${id}/episodes`)
+  }
+
+  public getAnimePictures = async (id: string): Promise<AnimePictures> => {
+    return this.get<AnimePictures>(`/anime/${id}/pictures`)
   }
 
   public getSeasonal = (): Promise<PaginatedResponse<Anime>> => {
