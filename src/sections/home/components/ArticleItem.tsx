@@ -1,7 +1,7 @@
 import type { FC, ReactElement } from 'react'
 import type { TouchableOpacityProps } from 'react-native'
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import type { Article } from '../../../../__stubs__/articles'
+import type { Article } from '../../../__stubs__/articles'
 
 interface Props {
   readonly article: Article
