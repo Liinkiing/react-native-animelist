@@ -1,9 +1,10 @@
 import type { ReactElement } from 'react'
 import type { NativeStackScreenProps } from '@react-navigation/native-stack'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import { Ionicons } from '@expo/vector-icons'
+import { Ionicons, EvilIcons } from '@expo/vector-icons'
 import { Icon } from 'native-base'
 
+import { useNavigation } from '@react-navigation/native'
 import { HomePage } from '../pages/HomePage'
 import { ProfilePage } from '../pages/ProfilePage'
 import { AnimeDetailPage } from '../pages/AnimeDetailPage'
@@ -28,7 +29,22 @@ const Stack = createNativeStackNavigator<AuthenticatedStackParamList>()
 export function AuthenticatedStack(): ReactElement {
   const { logout } = useAuth()
   return (
-    <Stack.Navigator initialRouteName="Profile">
+    <Stack.Navigator
+      screenOptions={({ navigation }) => ({
+        headerRight: () => (
+          <Icon
+            onPress={() => {
+              navigation.navigate('Profile')
+            }}
+            as={EvilIcons}
+            size="lg"
+            color="blue.500"
+            name="user"
+          />
+        ),
+      })}
+      initialRouteName="Home"
+    >
       <Stack.Screen name="Home" component={HomePage} />
       <Stack.Screen
         name="Profile"
