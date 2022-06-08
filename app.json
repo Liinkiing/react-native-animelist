@@ -1,7 +1,7 @@
 {
   "expo": {
     "scheme": "mal",
-    "name": "myanimelist",
+    "name": "MyAnimeList",
     "slug": "myanimelist",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -10,7 +10,7 @@
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#2563eb"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
