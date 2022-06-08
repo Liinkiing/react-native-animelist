@@ -7,12 +7,12 @@ import type {
 class JikanClientApp {
   private readonly baseUrl = 'https://api.jikan.moe/v4'
 
-  getAnime = async (id: string): Promise<Anime> => {
+  public getAnime = async (id: string): Promise<Anime> => {
     const { data } = await this.get<SingleResponse<Anime>>(`/anime/${id}`)
     return data
   }
 
-  getSeasonal = (): Promise<PaginatedResponse<Anime>> => {
+  public getSeasonal = (): Promise<PaginatedResponse<Anime>> => {
     return this.get<PaginatedResponse<Anime>>(`/seasons/now`)
   }
 
