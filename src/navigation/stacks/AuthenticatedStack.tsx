@@ -4,7 +4,6 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { Ionicons, EvilIcons } from '@expo/vector-icons'
 import { Icon } from 'native-base'
 
-import { useNavigation } from '@react-navigation/native'
 import { HomePage } from '../pages/HomePage'
 import { ProfilePage } from '../pages/ProfilePage'
 import { AnimeDetailPage } from '../pages/AnimeDetailPage'
