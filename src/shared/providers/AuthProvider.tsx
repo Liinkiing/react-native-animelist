@@ -12,6 +12,7 @@ import { AuthService } from '../../services/auth'
 
 interface Context {
   readonly user: User | null
+  readonly clearAnimeLikes: () => Promise<boolean>
   readonly toggleAnimeLike: (anime: SerializedAnime) => Promise<boolean>
   readonly isLoggedIn: boolean
   readonly login: (username: string, password: string) => Promise<boolean>
@@ -54,7 +55,14 @@ export function AuthProvider({ children }: Props): ReactElement {
     return true
   }, [])
 
-  const login = useCallback(async (username, password) => {
+  const clearAnimeLikes = useCallback(async () => {
+    const u = await AuthService.clearAnimeLikes()
+    setUser(u)
+
+    return true
+  }, [])
+
+  const login = useCallback(async (username: string, password: string) => {
     const u = await AuthService.login({ username, password })
     setUser(u)
 
@@ -73,6 +81,7 @@ export function AuthProvider({ children }: Props): ReactElement {
       isLoggedIn: !!user,
       login,
       logout,
+      clearAnimeLikes,
       toggleAnimeLike,
       user,
     }),

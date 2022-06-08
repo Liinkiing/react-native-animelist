@@ -8,6 +8,7 @@ import { AnimeItem } from '../../sections/home/components/AnimeItem'
 import { Page } from '../../shared/layout/Page'
 import type { AuthenticatedStackScreenProps } from '../stacks/AuthenticatedStack'
 import { useAuth } from '../../shared/providers/AuthProvider'
+import { serializeAnime } from '../../utils/anime'
 
 export function HomePage({
   navigation,
@@ -30,7 +31,7 @@ export function HomePage({
               anime={item}
               onPress={() =>
                 navigation.navigate('AnimeDetail', {
-                  anime: item,
+                  anime: serializeAnime(item),
                 })
               }
             />

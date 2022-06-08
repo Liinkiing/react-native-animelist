@@ -1,5 +1,6 @@
 import type { ReactElement } from 'react'
 import { FlatList, Heading, VStack } from 'native-base'
+import { Button } from 'react-native'
 import { Page } from '../../shared/layout/Page'
 import { useAuth } from '../../shared/providers/AuthProvider'
 import { AnimeItem } from '../../sections/home/components/AnimeItem'
@@ -9,7 +10,7 @@ import type { AuthenticatedStackScreenProps } from '../stacks/AuthenticatedStack
 export function ProfilePage({
   navigation,
 }: AuthenticatedStackScreenProps): ReactElement {
-  const { user } = useAuth()
+  const { user, clearAnimeLikes } = useAuth()
   return (
     <Page p={4}>
       <VStack space={4}>
@@ -36,6 +37,7 @@ export function ProfilePage({
                 />
               )}
             />
+            <Button title="Clear favorites" onPress={clearAnimeLikes} />
           </VStack>
         ) : (
           <Heading size="md">No favorite animes :(</Heading>

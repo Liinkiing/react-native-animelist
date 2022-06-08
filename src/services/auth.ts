@@ -13,6 +13,18 @@ class AuthServiceApp {
     return JSON.parse(user) as User
   }
 
+  public clearAnimeLikes = async (): Promise<User | null> => {
+    const user = await this.getUser()
+    if (!user) {
+      return null
+    }
+    const newUser: User = { ...user, likes: [] }
+
+    await AsyncStorage.setItem(USER_KEY, JSON.stringify(newUser))
+
+    return newUser
+  }
+
   public toggleAnimeLike = async (
     anime: SerializedAnime,
   ): Promise<User | null> => {
