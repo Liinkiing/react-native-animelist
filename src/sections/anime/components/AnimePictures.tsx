@@ -31,7 +31,7 @@ export function AnimePictures({ anime, fallback }: Props): ReactElement {
             keyExtractor={item => item.jpg.large_image_url}
             renderItem={({ item }) => (
               <Image
-                alt=""
+                alt={`${anime.title} picture`}
                 borderRadius="md"
                 mr={4}
                 source={{ uri: item.jpg.large_image_url }}
