@@ -8,7 +8,8 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "test": "jest",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "build:ios:preview": "eas build -p ios --profile preview"
   },
   "dependencies": {
     "@expo/vector-icons": "^13.0.0",
