@@ -37,7 +37,9 @@ export function ProfilePage({
               )}
             />
           </VStack>
-        ) : null}
+        ) : (
+          <Heading size="md">No favorite animes :(</Heading>
+        )}
       </VStack>
     </Page>
   )
